@@ -1,0 +1,84 @@
+% Generic template for one reviewer file.
+% Usage:
+% 1) Copy this file to reviews/Rx.tex
+% 2) Replace placeholders like <...>
+% 3) Keep one \reviewer at the top of each reviewer file
+
+\reviewer
+
+% ===== Block A: Reviewer-level summary =====
+\begin{generalcomment}
+  <Paste the reviewer summary comment here>
+\end{generalcomment}
+\begin{revmeta}[]
+  <Write your high-level thanks and summary response here>
+\end{revmeta}
+
+% ===== Block B: Point-by-point response (repeat as needed) =====
+\begin{commentresponse}
+  {\begin{revcomment}
+    <Reviewer comment #1>
+  \end{revcomment}}
+  {\begin{response}
+    <Your response to comment #1>
+  \end{response}}
+  {\begin{changes}
+    <What changed in manuscript, include section/page/equation/table if possible>
+  \end{changes}}
+\end{commentresponse}
+
+\begin{commentresponse}
+  {\begin{revcomment}
+    <Reviewer comment #2>
+  \end{revcomment}}
+  {\begin{response}
+    <Your response to comment #2>
+  \end{response}}
+  {\begin{changes}
+    <What changed in manuscript for comment #2>
+
+    % Optional figure illustration (non-floating):
+    % \begin{center}
+    %   \begin{minipage}{0.85\linewidth}
+    %     \centering
+    %     \includegraphics[width=\linewidth]{figures/<your_figure_file>}
+    %
+    %     \small Figure S1. <Figure caption in response file>
+    %   \end{minipage}
+    % \end{center}
+
+    % Optional table illustration (non-floating):
+    % \begin{center}
+    %   \begin{minipage}{0.9\linewidth}
+    %     \centering
+    %     \setlength{\tabcolsep}{6pt}
+    %     \begin{tabularx}{\linewidth}{lccc}
+    %       \hline
+    %       Setting & AUC & F1 & Time(s) \\
+    %       \hline
+    %       Retrain & 0.901 & 0.846 & 121.3 \\
+    %       Ours    & 0.897 & 0.842 & 8.4   \\
+    %       \hline
+    %     \end{tabularx}
+    %
+    %     \small Table S1. <Table caption in response file>
+    %   \end{minipage}
+    % \end{center}
+  \end{changes}}
+\end{commentresponse}
+
+% ===== Block C (optional): Disadvantage/formatting issue =====
+% Uncomment and use only when needed.
+% \begin{commentdisadvantage}
+%   {\begin{discomment}
+%     <Disadvantage or formatting issue>
+%   \end{discomment}}
+%   {\begin{response}
+%     <Your response>
+%   \end{response}}
+%   {\begin{changes}
+%     <What changed>
+%   \end{changes}}
+% \end{commentdisadvantage}
+
+\clearpage

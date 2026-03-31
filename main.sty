@@ -1,0 +1,106 @@
+% main.sty
+\ProvidesPackage{main}[2025/10/10 v1.0 Comment and Response Environment]
+\RequirePackage[breakable,skins]{tcolorbox}
+\RequirePackage{amsmath}
+\RequirePackage{xcolor}
+%%% Counters
+\newcounter{reviewer@counter}
+\setcounter{reviewer@counter}{0}
+\newcounter{reviewcomment@counter}[reviewer@counter]
+\setcounter{reviewcomment@counter}{0}
+% counter for disadvantages, reset with reviewer
+\newcounter{reviewdisadvantage@counter}[reviewer@counter]
+\setcounter{reviewdisadvantage@counter}{0}
+
+
+%%% Colors
+\definecolor{colorcommentfg}{HTML}{336633}
+\definecolor{colorcommentbg}{HTML}{ededed}
+\definecolor{colorcommentframe}{HTML}{336633}
+\definecolor{colorresponsebg}{HTML}{ffffff}
+\definecolor{colorresponse}{HTML}{48a8db}
+\definecolor{singlecommentbg}{HTML}{00ffd5}
+%\definecolor{colordark}{RGB}{0,63,87}
+%\definecolor{colormedium}{RGB}{0,112,155}
+%\definecolor{colorlight}{RGB}{102,180,211}
+%\colorlet{colorcommentbg}{colorlight!20}
+\definecolor{lightblue}{RGB}{60, 39, 139}
+\definecolor{colorchangebg}{HTML}{e5f9de}
+\definecolor{colorchangetext}{HTML}{000000}
+\colorlet{colorchangeframe}{black!20}
+%%%
+%%% 未修改完成的颜色
+\definecolor{colorcommentframe_no}{HTML}{DC143C}
+
+\newcommand{\reviewer}{
+	% \clearpage
+	\refstepcounter{reviewer@counter}%
+	% \phantomsection % 用于确保目录条目正确链接到页面
+	% \addcontentsline{toc}{section}{\protect\numberline{}Response to Reviewer \arabic{reviewer@counter}}
+	% \@ifundefined{pdfbookmark}{}{%
+	% 	%\pdfbookmark[1]{Reviewer \arabic{reviewer@counter}}{hyperref@reviewer\arabic{reviewer@counter}}%
+	% }%
+	% \section*{\textbf{\bfseries{Response to Reviewer \arabic{reviewer@counter}}}}
+}
+
+
+%%%
+% Define the new environment
+\newenvironment{commentresponse}[3]
+{ \refstepcounter{reviewcomment@counter}
+  \noindent\begin{tabular}{|p{\linewidth}|}
+  \hline
+  #1 \\ % Comment section
+  \hline 
+  #2\\
+  \hline
+  #3
+}
+{
+  \\ \hline
+  \end{tabular}\\[2em]
+}
+
+
+\newenvironment{commentdisadvantage}[3]
+{ \refstepcounter{reviewdisadvantage@counter}
+  \noindent\begin{tabular}{|p{\linewidth}|}
+  \hline
+  #1 \\ % Comment section
+  \hline 
+  #2\\
+  \hline
+  #3
+}
+{
+  \\ \hline
+  \end{tabular}\\[2em]
+}
+
+
+
+\newenvironment{revcomment}[1][{}]{%
+    \textbf{\color{red}Comment \arabic{reviewer@counter}-\arabic{reviewcomment@counter}:}\par #1
+}{\vspace{1em}}
+
+\newenvironment{discomment}[1][{}]{%
+    \textbf{\color{red}Disadvantage \arabic{reviewer@counter}-\arabic{reviewdisadvantage@counter}:} #1
+}{\vspace{1em}}
+
+\newenvironment{response}[1][{}]{%
+    \textbf{\color{blue}Response:}\par #1
+}{\vspace{1em}}
+
+\newenvironment{changes}[1][{}]{%
+    \textbf{\color{blue}Changes:}\par #1
+}{\vspace{1em}}
+
+
+\newenvironment{generalcomment}{%
+	\begin{tcolorbox}[adjusted title={Summary Comment}, fonttitle={\bfseries}, enhanced jigsaw, colbacktitle={colorcommentframe},arc=0pt,boxrule=0em,opacityframe=0,colback={colorcommentbg}]
+}{\end{tcolorbox}}
+
+
+\newenvironment{revmeta}[1][{Thank you for the comment.}]{%
+	\textbf{Response:} \color{lightblue}#1\par
+}{\vspace{1em}}
